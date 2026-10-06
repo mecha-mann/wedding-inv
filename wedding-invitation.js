@@ -1,6 +1,30 @@
 (function(){
   var body=document.body, gate=document.getElementById('gate');
+  var music=document.getElementById('wedding-music'), musicToggle=document.getElementById('music-toggle');
+  function playMusic(){
+    var playback=music.play();
+    if(playback){playback.catch(function(error){
+      if(error.name!=='NotAllowedError'){
+        musicToggle.setAttribute('aria-pressed','false');
+        musicToggle.setAttribute('aria-label','Turn music on');
+        console.error('Wedding music could not be played:',error);
+      }
+    });}
+  }
+  musicToggle.addEventListener('click',function(){
+    if(music.paused){
+      musicToggle.setAttribute('aria-pressed','true');
+      musicToggle.setAttribute('aria-label','Turn music off');
+      playMusic();
+    }else{
+      music.pause();
+      musicToggle.setAttribute('aria-pressed','false');
+      musicToggle.setAttribute('aria-label','Turn music on');
+    }
+  });
+  playMusic();
   document.getElementById('seal').addEventListener('click',function(){
+    playMusic();
     gate.classList.add('open');
     setTimeout(function(){body.classList.remove('locked');body.classList.add('revealed');},700);
     setTimeout(function(){gate.style.display='none';},2200);

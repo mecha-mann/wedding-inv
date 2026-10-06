@@ -18,6 +18,16 @@ html,body{height:auto}
 
 /* progress thread */
 #thread{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--gold);z-index:20}
+.music-toggle{position:fixed;z-index:60;top:calc(16px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));
+  display:grid;place-items:center;width:44px;height:44px;padding:10px;border:1px solid rgba(240,206,130,.65);border-radius:50%;
+  background:rgba(74,10,18,.78);color:var(--gold2);cursor:pointer;backdrop-filter:blur(8px);
+  box-shadow:0 4px 18px rgba(0,0,0,.22);transition:background .2s,transform .2s}
+.music-toggle:hover{background:rgba(116,22,32,.92);transform:scale(1.06)}
+.music-toggle:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+.music-toggle svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.music-toggle .music-off{display:none}
+.music-toggle[aria-pressed="false"] .music-on{display:none}
+.music-toggle[aria-pressed="false"] .music-off{display:block}
 
 /* ---------- gate ---------- */
 #gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;text-align:center;
